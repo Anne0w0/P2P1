@@ -7,7 +7,9 @@
 #include <unistd.h>
 //función para la comunicación con el socket creado
 int comunicacion(int puerto, char* ip, char *arch);
-const char** menu();
+void menu();
+void busqueda(int opc); 
+char** archivos;
 
 int main(int argc, char *argv[]){
 
@@ -20,11 +22,12 @@ int main(int argc, char *argv[]){
     // Inicializacion del puerto
     //int puerto = atoi(argv[1]);
     //Mostramos el menu que nos regresara los nombres de los archivos que buscamos
-    const char** archivos = *archivos[100];
+    
+    archivos = malloc(sizeof(char*)*100);
 
-    archivos = menu();
-    int i = 0;
-    for (int i = 0; archivos != "0000"; i++){
+    menu();
+    
+   /* for (int i = 0; strcmp(archivos[i],"0000"); i++){
         printf("%s\n", archivos[i]);
     }
 
@@ -38,12 +41,13 @@ int main(int argc, char *argv[]){
     return 0;
 }
 
-const char** menu(){
-    int opc;
+void menu(){
+    int opc = 0;
     int ban = 1;
-    const char* archivos[] ={"archivo1", "archivo2", "archivo3", "archivo4", "archivo5","0000"};
-    printf("Que tipo de archivo es el que desea enviar?\n1 .txt\n 2 .pdf\n 3 .jpg \n4 .mp3\n");
-    scanf("%d", &opc);
+    
+   /* printf("Que tipo de archivo es el que desea enviar?\n1 .txt\n2 .pdf\n3 .jpg \n4 .mp3\n");
+    fflush(stdin);
+    scanf("%d",&opc);
     while (ban)
     {
       switch (opc)
@@ -51,21 +55,25 @@ const char** menu(){
             //caso de .txt
             case 1:
                 printf("busqueda de archivos .txt ");
+                busqueda(opc);
                 ban = 0;
                 break;
             //caso de .pdf
             case 2:
                 printf("busqueda de archivos .pdf ");
+                busqueda(opc);
                 ban = 0;
                 break;
             //caso de .jpg
             case 3:
                 printf("busqueda de archivos .jpg ");
+                busqueda(opc);
                 ban = 0;
                 break;
             //caso de .mp3
             case 4:
                 printf("busqueda de archivos .mp3 ");
+                busqueda(opc);
                 ban = 0;
                 break;
             default:
@@ -73,8 +81,15 @@ const char** menu(){
                 break;
         }
     }
+    */
     
-    return &archivos;
+}
+
+void busqueda(int opc){
+    for (int i = 0 ; i != 5 ; i++)
+    strcpy(archivos[i],strcat("archivo",(char)i));
+
+    strcpy(archivos[5],"0000");
 
 }
 
